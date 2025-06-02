@@ -3,22 +3,21 @@ import {BanknotsType, MoneyType} from "./App";
 import styled from "styled-components";
 
 type CountryPropsType = {
-    data: any
-    setFilterValue: any // давайте подумаем, setFilter -это грузчик, у которого всегда в руках товар
+    data: MoneyType[]
+    setFilterValue: (filterValue: BanknotsType) => void // давайте подумаем, setFilter -это грузчик, у которого всегда в руках товар
   }
 
-export const Country = () => {
-    // с деструктуризацией пожалуйста
+export const Country = ({data, setFilterValue}: CountryPropsType) => {
     const setAll=()=>{
-        // засетаем 'All'
+        setFilterValue('All') 
     }
 
     const setUSD=()=>{
-        // засетаем 'USD'
+        setFilterValue('USD')
     }
 
     const setRUB=()=>{
-        // засетаем 'RUB'
+        setFilterValue('RUB')
     }
 
    const addMoneyHandler=()=>{
@@ -43,7 +42,7 @@ export const Country = () => {
                 <button >Снять 100$</button>
                 <button >Снять 100р.</button>
             </div>
-            <City data={"передаем денюжки в город"}/>
+            <City data={data}/>
         </Terminal>
     );
 };

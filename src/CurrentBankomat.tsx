@@ -1,28 +1,38 @@
-import {MoneyType} from "./App";
+import { MoneyType } from "./App";
 import styled from "styled-components";
 
 type CurrentBankomatPropsType = {
-    money: any
+  money: MoneyType
 }
 
-export const CurrentBankomat = () => {
-    // с деструктуризацией пожалуйста
-    return (
-        <div></div>
-        // ВНАЧАЛЕ НАПИШЕМ СОВСЕМ НЕКРАСИВО
-        // props.money.banknote==='USD'
-        //     ? ЗЕЛЕНАЯ
-        //     : СИНЯЯ
+export const CurrentBankomat = ({ money }: CurrentBankomatPropsType) => {
+  // с деструктуризацией пожалуйста
+  return (
+    <div>
+      {/* {money.banknote === 'USD'
+        ? <BanknoteGreen>
+          <Name>{money.banknote}</Name>
+          <Nominal>{money.nominal}</Nominal>
+        </BanknoteGreen>
+        : <BanknoteBlue>
+          <Name>{money.banknote}</Name>
+          <Nominal>{money.nominal}</Nominal>
+        </BanknoteBlue>} */}
 
 
-        // А ТЕПЕРЬ КРАСИВО
-        //         <Banknote color={ТЕРНАРНЫЙ ОПЕРАТОР}>
-        //         <Name>{money.banknote}</Name>
-        //         <Nominal>{money.nominal}</Nominal>
-        //     </Banknote>
+      <Banknote color={money.banknote === 'USD' ? "aquamarine" : "lightskyblue"}>
+        <Name>{money.banknote}</Name>
+        <Nominal>{money.nominal}</Nominal>
+      </Banknote>
+    </div >
 
 
-    );
+
+
+
+
+
+  );
 };
 
 
@@ -41,7 +51,7 @@ const BanknoteBlue = styled.div`
 `
 
 const Banknote = styled.div`
-  // background-color: ...
+ background-color: ${props => props.color};;
   width: 200px;
   height: 100px;
   margin: 5px;
