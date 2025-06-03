@@ -25,16 +25,12 @@ export const CurrentBankomat = ({ money }: CurrentBankomatPropsType) => {
         <Nominal>{money.nominal}</Nominal>
       </Banknote>
     </div >
-
-
-
-
-
-
-
   );
 };
 
+type BancnoteColorPropsType = {
+  color: "aquamarine" | "lightskyblue"
+} 
 
 const BanknoteGreen = styled.div`
   background-color: aquamarine;
@@ -50,8 +46,8 @@ const BanknoteBlue = styled.div`
   margin: 10px;
 `
 
-const Banknote = styled.div`
- background-color: ${props => props.color};;
+const Banknote = styled.div<BancnoteColorPropsType>`
+ background-color: ${props => props.color};
   width: 200px;
   height: 100px;
   margin: 5px;

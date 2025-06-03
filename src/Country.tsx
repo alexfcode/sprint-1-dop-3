@@ -1,32 +1,34 @@
-import {City} from "./City";
-import {BanknotsType, MoneyType} from "./App";
+import { City } from "./City";
+import { BanknotsType, MoneyType } from "./App";
 import styled from "styled-components";
 
 type CountryPropsType = {
     data: MoneyType[]
     setFilterValue: (filterValue: BanknotsType) => void // давайте подумаем, setFilter -это грузчик, у которого всегда в руках товар
-  }
+    addMoney: (banknote: BanknotsType) => void
+    removeMoney: (banknote: BanknotsType) => void
+}
 
-export const Country = ({data, setFilterValue}: CountryPropsType) => {
-    const setAll=()=>{
-        setFilterValue('All') 
+export const Country = ({ data, setFilterValue, addMoney, removeMoney }: CountryPropsType) => {
+    const setAll = () => {
+        setFilterValue('All')
     }
 
-    const setUSD=()=>{
+    const setUSD = () => {
         setFilterValue('USD')
     }
 
-    const setRUB=()=>{
+    const setRUB = () => {
         setFilterValue('RUB')
     }
 
-   const addMoneyHandler=()=>{
+    const addMoneyHandler = (banknote: BanknotsType) => {
+        addMoney(banknote)
+    }
 
-   }
-
-   const removeMoneyHandler=()=>{
-
-   }
+    const removeMoneyHandler = (banknote: BanknotsType) => {
+        removeMoney(banknote)
+    }
 
     return (
         <Terminal>
@@ -37,12 +39,12 @@ export const Country = ({data, setFilterValue}: CountryPropsType) => {
             </div>
             <div>
                 {/*сделаем в последнюю очередь*/}
-                <button>Положить 100$</button>
-                <button >Положить 100р.</button>
-                <button >Снять 100$</button>
-                <button >Снять 100р.</button>
+                <button onClick={() => addMoneyHandler("USD")}>Положить 100$</button>
+                <button onClick={() => addMoneyHandler("RUB")}>Положить 100р.</button>
+                <button onClick={() => removeMoneyHandler("USD")}>Снять 100$</button>
+                <button onClick={() => removeMoneyHandler("RUB")}>Снять 100р.</button>
             </div>
-            <City data={data}/>
+            <City data={data} />
         </Terminal>
     );
 };
